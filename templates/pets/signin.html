@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .wrapper {
+            padding: 0 0 100px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-attachment: fixed;
+            min-height: 100%;
+        }
+    </style>
+    <!-- <link rel="stylesheet" href="{% static 'stylesheets/signup.css' %}"> -->
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="alert-box">
+        <p class="alert-text">{{message}}</p>
+    </div>
+    {% endfor %}
+
+    <section class="wrapper">
+        <div class="container">
+            <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
+                <div>
+                    <img src="{% static 'images/123655.png' %}" class="img-fluid" style=width:200px; alt="logo">
+                </div>
+                <form class="rounded bg-white shadow p-5" method="post">
+                    {% csrf_token %}
+                    <h3 class="text-dark fw-bolder fs-4 mb-2">Log in</h3>
+                    <div class="fw-normal text-muted mb-4">
+                        new here? <a href="{%url 'signup'%}" class="text-success fw-bold text-decoration-none">Create
+                            an
+                            Account</a>
+                    </div>
+
+                    <div class="form-floating mb-3 ">
+                        <input type="text" class="ps-2" name="username" placeholder="Enter Username">
+                        <br>
+                        <br>
+                        <input type="password" class="ps-2" name="password" placeholder="Enter Password">
+                    </div>
+
+                    <div class="mt-2 text-end">
+                        <a href="#" class="text-success fw-bold text-decoration-none">Forgot password?</a>
+                    </div>
+                    <button class="btn btn-success sunmit_btn w-100 my-4 shadow-none" type="submit">login</button>
+                    <div class="text-center text-muted text-uppercase mb-3">or</div>
+                    <a href="#" class="btn btn-light login_with w-100 mb-3 shadow-none">
+                        <img src="{% static 'images/search.png' %}" class="img-fluid me-3 " style="height: 30px;">
+                        continue with google
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

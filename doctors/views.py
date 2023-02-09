@@ -9,8 +9,6 @@ from .decorators import doctor_only, not_auth_doctor
 
 # Create your views here.
 
-
-
 @doctor_only
 def doctor_home(request):
     return render(request, "doctors/doctor-home.html")

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import UserAddForm
+from .forms import UserAddForm,AddPetForm
 from .decorators import pet_only, not_auth_pet
 
 # Create your views here.
@@ -67,3 +67,16 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("signin")
+
+
+def add_user_profile(request):
+    form = AddPetForm()
+    if request.method == "POST":
+        add_form = AddPetForm(request.POST,request.FILES)
+        if(add_form.is_valid()):
+            user = User.objects.get(id=request.user.id)
+            updated_profile = add_form.save()
+            updated_profile.user_ID = user
+            updated_profile.save()
+            return redirect("pet_home")
+    return render(request, "pets/add-profile.html",{"form":form})

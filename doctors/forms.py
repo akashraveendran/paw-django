@@ -10,12 +10,12 @@ class UserAddForm(UserCreationForm):
         fields = ["username", "first_name", "last_name",
                   "email", "password1", "password2"]
         widgets = {
-            'username': TextInput(attrs={'placeholder':'Enter Username'}),
-            'first_name': TextInput(attrs={'placeholder':'Enter Firstname'}),
-            'last_name': TextInput(attrs={'placeholder':'Enter Lastname'}),
-            'email': TextInput(attrs={'placeholder':'Enter Email'}),
+            'username': TextInput(attrs={"class":"form-control"}),
+            'first_name': TextInput(attrs={"class":"form-control"}),
+            'last_name': TextInput(attrs={"class":"form-control"}),
+            'email': TextInput(attrs={"class":"form-control"}),
         }
     def __init__(self, *args, **kwargs) :
         super().__init__(*args, **kwargs)
-        self.fields["password1"].widget.attrs.update({'placeholder':"Enter Password"})
-        self.fields["password2"].widget.attrs.update({'placeholder':"Confirm Password"})
+        self.fields["password1"].widget.attrs.update({"class":"form-control"})
+        self.fields["password2"].widget.attrs.update({"class":"form-control"})

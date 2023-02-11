@@ -5,6 +5,8 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import UserAddForm,AddPetForm
+from .models import PetProfile
+
 from .decorators import pet_only, not_auth_pet
 
 # Create your views here.
@@ -68,7 +70,7 @@ def signout(request):
     logout(request)
     return redirect("signin")
 
-
+@pet_only
 def add_user_profile(request):
     form = AddPetForm()
     if request.method == "POST":
@@ -80,3 +82,10 @@ def add_user_profile(request):
             updated_profile.save()
             return redirect("pet_home")
     return render(request, "pets/add-profile.html",{"form":form})
+
+@pet_only
+def view_user_profile(request):
+    pet = PetProfile.objects.filter(user_ID=request.user.id)
+    if(len(pet) == 0):
+        return redirect("add_user_profile")
+    return render(request,"pets/pet-profile.html",{"pet":pet[0]})

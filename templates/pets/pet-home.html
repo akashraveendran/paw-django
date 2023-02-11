@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="Reprise Responsive web template, Bootstrap Web Templates" />
-    <title>Paw | Login </title>
+    <title>Paw | Home </title>
     <link rel="shortcut icon" href="{% static 'assets\images\loogo.png' %}" type="image/x-icon">
     <link href="//fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
@@ -49,7 +49,7 @@
                             <a class="nav-link" href="about.html">Vaccines</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'add_user_profile'%}">Profile</a>
+                            <a class="nav-link" href="{% url 'view_user_profile'%}">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'signout' %}">signout</a>
@@ -298,60 +298,68 @@
     <!-- Footers-14 -->
 
     {% endblock %}
-    <footer class="w3l-footers-14 pt-5">
+    <footer class="w3l-footers-14 py-5">
         <div class="container py-md-5 py-sm-3">
             <div class="row w3l-footer-top-form no-gutters">
-                <div class="col-lg-7 grid-two-column">
-                    <div class="row footers14-top no-gutters">
-                        <div class="col-lg-6 footer14-nav-left">
-                            <ul class="footer14-nav">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footers14-bottom d-flex">
-                        <div class="copyright">
-                            <p>© 2021 paw<a href="#URL"></a></p>
-                        </div>
-                        <div class="language-select d-flex">
-                            <span class="fa fa-language" aria-hidden="true"></span>
-                            <select>
-                                <option>English</option>
-                                <option>Estonina</option>
-                                <option>Deutsch</option>
-                                <option>Nederlan;ds</option>
-                            </select>
-                        </div>
-                    </div>
+
+            </div>
+            <div class="row footers14-top no-gutters">
+                <div class="col-lg-6 footer14-nav-left">
+                    <ul class="footer14-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
-                <!-- move top -->
-                <button onclick="topFunction()" id="movetop" title="Go to top">
-                    &uarr;
-                </button>
-                <script>
-                    // When the user scrolls down 20px from the top of the document, show the button
-                    window.onscroll = function () {
-                        scrollFunction()
-                    };
+                <div class="col-lg-6 footer14-app text-lg-right">
+                    <span>Download app :</span>
+                    <a href="#url"><span class="fa fa-apple"></span></a>
+                    <a href="#url"><span class="fa fa-windows"></span></a>
+                    <a href="#url"><span class="fa fa-android"></span></a>
 
-                    function scrollFunction() {
-                        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                            document.getElementById("movetop").style.display = "block";
-                        } else {
-                            document.getElementById("movetop").style.display = "none";
-                        }
-                    }
+                </div>
+            </div>
+            <div class="footers14-bottom d-flex">
+                <div class="copyright">
+                    <p>© 2023 Reprise. All RIghts Reserved. Design by <a href="#URL">MY DESIGNS</a></p>
+                </div>
+                <div class="language-select d-flex">
+                    <span class="fa fa-language" aria-hidden="true"></span>
+                    <select>
+                        <option>English</option>
+                        <option>Estonina</option>
+                        <option>Deutsch</option>
+                        <option>Nederlan;ds</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            &uarr;
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () {
+                scrollFunction()
+            };
 
-                    // When the user clicks on the button, scroll to the top of the document
-                    function topFunction() {
-                        document.body.scrollTop = 0;
-                        document.documentElement.scrollTop = 0;
-                    }
-                </script>
-                <!-- /move top -->
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <!-- /move top -->
 
     </footer>
     <!-- Footers-14 -->

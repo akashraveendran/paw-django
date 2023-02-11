@@ -1,0 +1,14 @@
+{% extends "pets/pet-home.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 p-5">
+    <h1 class="mt-5 pt-5">pet profile</h1>
+    <h3>{{pet.Pet_name}}</h3>
+    <h3>{{pet.Pet_category}}</h3>
+    <h3>{{pet.Pet_Breed}}</h3>
+    <h3>{{pet.Age}}</h3>
+    <img src="{{pet.Pet_photo.url}}" alt="">
+</div>
+
+{% endblock%}

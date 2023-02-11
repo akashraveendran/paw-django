@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import UserAddForm
+from .forms import UserAddForm,DoctorProfieForm
+from .models import DoctorProfile
+
 from .decorators import doctor_only, not_auth_doctor
 
 # Create your views here.
@@ -63,3 +65,24 @@ def d_signin(request):
 def d_signout(request):
     logout(request)
     return redirect("d_signin")
+
+
+@doctor_only
+def add_doctor_profile(request):
+    form = DoctorProfieForm()
+    if request.method == "POST":
+        add_form = DoctorProfieForm(request.POST,request.FILES)
+        if(add_form.is_valid()):
+            doctor = User.objects.get(id=request.user.id)
+            updated_profile = add_form.save()
+            updated_profile.doctor_ID = doctor
+            updated_profile.save()
+            return redirect("doctor_home")
+    return render(request, "doctors/add-profile.html",{"form":form})
+
+@doctor_only
+def view_doctor_profile(request):
+    doctor = DoctorProfile.objects.filter(doctor_ID=request.user.id)
+    if(len(doctor) == 0):
+        return redirect("add_doctor_profile")
+    return render(request,"doctors/doctor-profile.html",{"doctor":doctor[0]})

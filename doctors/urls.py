@@ -9,4 +9,7 @@ urlpatterns = [
     path('signout/', views.d_signout, name="d_signout"),
     path('add-profile/', views.add_doctor_profile, name="add_doctor_profile"),
     path('view-profile/', views.view_doctor_profile, name="view_doctor_profile"),
+    path('view-doctor-appoinments/', views.view_doctor_appoinments, name="view_doctor_appoinments"),
+    path('view-patient/<int:id>', views.view_patient, name="view_patient"),
+    path('cancel-booking/<int:id>', views.cancel_booking, name="cancel_booking"),
 ]

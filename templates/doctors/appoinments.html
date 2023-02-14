@@ -1,0 +1,32 @@
+{% extends "doctors/doctor-home.html" %}
+{% load static %}
+
+{% block content %}
+<section class="w3l-bottom-grids-6 py-5" id="services">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <h5 class="title-subhny mb-2"> </h5>
+        <h3 class="title-w3l"><span>Here are Your </span> Appoinments</h3>
+        <div class="grids-area-hny main-cont-wthree-fea row pt-3 mt-5">
+            {% for b in all_bookings %}
+            <div class="col-lg-12 col-md-12 grids-feature mb-3">
+                <div class="area-box d-flex justify-content-between" style="width: 100%;">
+                    <div class="left">
+                        <h4><a href="#feature" class="title-head">Booked By {{b.Patient_Name}}</a></h4>
+                        <p>Booking Date {{b.Booking_Date}} <br>Booking Time : {{b.Booking_Time}}
+                            <br>
+                            Symptoms : {{b.Reason}}
+                            <br>
+                            <span class="text-primary">Status : {{b.status}}</span>
+                        </p>
+                    </div>
+                    <div class="right d-flex flex-column">
+                        <a class="btn btn-danger mt-4" href="{% url 'cancel_booking' b.id %}"> Cancel Appoinment </a>
+                        <a class="btn btn-danger mt-4" href="{% url 'view_patient' b.Patient_ID %}"> View Pet </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock%}

@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .forms import UserAddForm,DoctorProfieForm
 from .models import DoctorProfile
+from pets.models import Booking,PetProfile
 
 from .decorators import doctor_only, not_auth_doctor
 
@@ -86,3 +87,21 @@ def view_doctor_profile(request):
     if(len(doctor) == 0):
         return redirect("add_doctor_profile")
     return render(request,"doctors/doctor-profile.html",{"doctor":doctor[0]})
+
+@doctor_only
+def view_doctor_appoinments(request):
+    all_bookings = Booking.objects.filter(Doctor_ID=request.user.id)
+    return render(request,"doctors/appoinments.html",{"all_bookings":all_bookings})
+
+
+@doctor_only
+def view_patient(request,id):
+    patient = PetProfile.objects.get(id=id)
+    return render(request,"doctors/patient-profile.html",{"pet":patient})
+
+@doctor_only
+def cancel_booking(request,id):
+    booking = Booking.objects.get(id=id)
+    booking.status = "Cancelled By Doctor"
+    booking.save()
+    return redirect("view_doctor_appoinments")

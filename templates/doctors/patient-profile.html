@@ -2,55 +2,34 @@
 {% load static %}
 
 {% block content %}
-<style>
-    #services {
-        background: linear-gradient(to right, #f0abc2, #ffcebf);
-    }
-
-    .right2 {
-        background: #333;
-        padding: 30px;
-        /* transform: scaleY(1.3) scaleX(1.5); */
-        width: 50%;
-    }
-
-    .w3l-bottom-grids-6 .area-box {
-        padding: 0;
-    }
-</style>
 
 <section class="w3l-bottom-grids-6 mt-5" id="services">
     <div class="container py-lg-5 py-md-4 py-2">
         <h5 class="title-subhny mb-2"> </h5>
-        <h3 class="title-w3l text-center"><span> Doctor Profile </span></h3>
+        <h3 class="title-w3l text-center"><span> Pet Profile </span></h3>
         <div class="grids-area-hny main-cont-wthree-fea row  mt-5">
             <div class="col-12 col-md-11 grids-feature mb-3 d-flex justify-content-center" style="height: 70vh;">
                 <div class="area-box bg-light"
                     style="width: 80%;height: 100%;display: flex;justify-content: space-between;">
-                    <img class="p-3" src="{{doctor.Doctor_Photo.url}}" alt=""
+                    <img class="p-3" src="{{pet.Pet_photo.url}}" alt=""
                         style="width:50%;height: 100%;border-radius: 10px;object-fit: cover;">
                     <div class="right2">
 
                         <h4><a href="#feature" class="title-head text-light text-uppercase">{{doctor.Doctor_name}}</a>
                         </h4>
                         <p>
-                            {{doctor.Specialised_In}}
+                            {{pet.Pet_name}}
                             <br>
-                            Have {{doctor.Experience}} of experience
+                            Is a {{pet.Pet_category}}
                             <br>
-                            {{doctor.About}}
+                            Breed : {{pet.Pet_Breed}}
                             <br>
                             <br>
-                            Clinic name: {{doctor.Clinic_Name}}
+                            Age : {{pet.Age}} years
                             <br>
-                            Clinic Address: {{doctor.Clinic_Address}}
-                            <br>
-                            Contact Number : {{doctor.Contact_Number}}
-                            <br>
-
-
                         </p>
                         <br>
+                        <h4>Vaccines</h4>
 
                     </div>
                 </div>

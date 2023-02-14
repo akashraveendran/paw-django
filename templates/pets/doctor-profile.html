@@ -1,3 +1,4 @@
+{% extends "pets/pet-home.html" %}
 {% load static %}
 
 
@@ -47,13 +48,10 @@
                             <br>
                             Contact Number : {{doctor.Contact_Number}}
                             <br>
-
-
                         </p>
                         <br>
                         <a class="btn btn-primary mt-4" href="{% url 'view_doctor_profile' doctor.id %}"> book an
                             appoinment</a>
-
                     </div>
                 </div>
             </div>

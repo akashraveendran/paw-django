@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .forms import UserAddForm,AddPetForm
 from .models import PetProfile
+from doctors.models import DoctorProfile
 
 from .decorators import pet_only, not_auth_pet
 
@@ -89,3 +90,13 @@ def view_user_profile(request):
     if(len(pet) == 0):
         return redirect("add_user_profile")
     return render(request,"pets/pet-profile.html",{"pet":pet[0]})
+
+@pet_only
+def view_all_doctors(request):
+    all_doctors = DoctorProfile.objects.all()
+    return render(request,"pets/view-all-doctors.html",{"all_doctors":all_doctors})
+
+@pet_only
+def view_doctor_profile(request,id):
+    doctor = DoctorProfile.objects.get(id=id)
+    return render(request,"pets/doctor-profile.html",{"doctor":doctor})

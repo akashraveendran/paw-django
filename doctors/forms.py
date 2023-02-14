@@ -26,7 +26,7 @@ class UserAddForm(UserCreationForm):
 class DoctorProfieForm(ModelForm):
     class Meta:
         model = DoctorProfile
-        fields = ["Doctor_name","Specialised_In","Experience","Clinic_Name","Clinic_Address","About","Doctor_Photo"]
+        fields = ["Doctor_name","Specialised_In","Experience","Clinic_Name","Contact_Number","Clinic_Address","About","Doctor_Photo"]
 
         widgets = {
             'Doctor_name': TextInput(attrs={"class":"contact-input"}),

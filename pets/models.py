@@ -27,3 +27,12 @@ class Booking(models.Model):
     Booking_Time = models.CharField(max_length=200,null=True,blank=True)
     Reason = models.CharField(max_length=200,null=True,blank=True)
     status = models.CharField(max_length=200,null=True,blank=True)
+
+
+
+class Vaccination(models.Model):
+    user_ID = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True )
+    Pet_name = models.CharField(max_length=200,null=True,blank=True)
+    Vaccination_Name = models.CharField(max_length=200,null=True,blank=True)
+    Vaccinated_Date = models.CharField(max_length=200,null=True,blank=True)
+    Vaccination_Document = models.ImageField(upload_to="vaccines",max_length=200,null=True,blank=True)

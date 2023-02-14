@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import UserAddForm,AddPetForm,AddBookingForm
+from .forms import UserAddForm,AddPetForm,AddBookingForm,AddVaccineForm
 from .models import PetProfile,Booking
 from doctors.models import DoctorProfile
 
@@ -124,3 +124,18 @@ def book_doctor(request,id):
 def view_my_bookings(request):
     all_bookings = Booking.objects.filter(Patient_ID=request.user.id)
     return render(request,"pets/view-all-bookings.html",{"all_bookings":all_bookings})
+
+@pet_only
+def add_vaccine(request):
+    form = AddVaccineForm()
+    if request.method == "POST":
+        add_form = AddVaccineForm(request.POST,request.FILES)
+        print(request.FILES)
+        if(add_form.is_valid()):
+            vaccine_form = add_form.save()
+            pet = PetProfile.objects.get(user_ID=request.user.id)
+            vaccine_form.user_ID = request.user
+            vaccine_form.Pet_name = pet.Pet_name
+            vaccine_form.save()
+            return redirect("pet_home")
+    return render(request, "pets/add-vaccine.html",{"form":form})

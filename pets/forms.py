@@ -2,7 +2,7 @@ from django.forms import TextInput,ModelForm,DateInput
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
-from .models import PetProfile,Booking
+from .models import PetProfile,Booking,Vaccination
 
 class UserAddForm(UserCreationForm):
 
@@ -42,4 +42,14 @@ class AddBookingForm(ModelForm):
             'Booking_Date': DateInput(attrs={"class":"contact-input",'type': 'date'}),
             'Booking_Time': TextInput(attrs={"class":"contact-input",'type': 'time'}),
             'Reason': TextInput(attrs={"class":"contact-input"}),
+        }
+
+class AddVaccineForm(ModelForm):
+    class Meta:
+        model = Vaccination
+        fields = ["Vaccination_Name","Vaccinated_Date","Vaccination_Document"]
+
+        widgets = {
+            'Vaccination_Name': TextInput(attrs={"class":"contact-input"}),
+            'Vaccinated_Date': TextInput(attrs={"class":"contact-input",'type': 'date'}),
         }

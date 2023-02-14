@@ -16,7 +16,7 @@
                     <h4><a href="#feature" class="title-head">{{doctor.Doctor_name}}</a></h4>
                     <p>{{doctor.Specialised_In}} <br>{{doctor.About}} </p>
 
-                    <div> <a class="btn btn-primary mt-4" href="{% url 'view_doctor_profile' doctor.id %}"> book an
+                    <div> <a class="btn btn-primary mt-4" href="{% url 'book_doctor' doctor.id %}"> book an
                             appoimnet</a>
                         <a class="btn btn-outline-primary mt-4" href="{% url 'view_doctor_profile' doctor.id %}"> view
                             Doctor's Profile</a>

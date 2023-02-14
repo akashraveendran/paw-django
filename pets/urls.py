@@ -11,5 +11,7 @@ urlpatterns = [
     path('add-profile/', views.add_user_profile, name="add_user_profile"),
     path('view-profile/', views.view_user_profile, name="view_user_profile"),
     path('view-all-doctors/', views.view_all_doctors, name="view_all_doctors"),
+    path('view-my-bookings/', views.view_my_bookings, name="view_my_bookings"),
     path('view-doctor-profile/<int:id>', views.view_doctor_profile, name="view_doctor_profile"),
+    path('book-doctor/<int:id>', views.book_doctor, name="book_doctor"),
 ]

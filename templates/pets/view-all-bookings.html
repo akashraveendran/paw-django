@@ -1,0 +1,27 @@
+{% extends "pets/pet-home.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="w3l-bottom-grids-6 py-5" id="services">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <h5 class="title-subhny mb-2"> </h5>
+        <h3 class="title-w3l"><span>Here are Your </span> Appoinments</h3>
+        <div class="grids-area-hny main-cont-wthree-fea row pt-3 mt-5">
+            {% for b in all_bookings %}
+            <div class="col-lg-6 col-md-6 grids-feature mb-3">
+                <div class="area-box">
+                    <h4><a href="#feature" class="title-head">Doctor Name {{b.Doctor_Name}}</a></h4>
+                    <p>Booked on {{b.Booking_Date}} <br> at {{b.Booking_Time}} </p>
+
+                    <div>
+                        <a class="btn btn-danger mt-4" href=""> Cancel Appoinment </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock%}

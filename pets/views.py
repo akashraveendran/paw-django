@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import UserAddForm,AddPetForm
-from .models import PetProfile
+from .forms import UserAddForm,AddPetForm,AddBookingForm
+from .models import PetProfile,Booking
 from doctors.models import DoctorProfile
 
 from .decorators import pet_only, not_auth_pet
@@ -100,3 +100,27 @@ def view_all_doctors(request):
 def view_doctor_profile(request,id):
     doctor = DoctorProfile.objects.get(id=id)
     return render(request,"pets/doctor-profile.html",{"doctor":doctor})
+
+@pet_only
+def book_doctor(request,id):
+    doctor = DoctorProfile.objects.get(id=id)
+    form = AddBookingForm()
+    if request.method == "POST":
+        add_form = AddBookingForm(request.POST,request.FILES)
+        if(add_form.is_valid()):
+            booked_form = add_form.save()
+            patient = User.objects.get(id=request.user.id)
+            booked_form.Patient_ID = patient.id
+            booked_form.Patient_Name = patient.username
+            booked_form.Doctor_ID = doctor.doctor_ID
+            booked_form.Doctor_Name = doctor.Doctor_name
+            booked_form.status = "Booked"
+            booked_form.save()
+            return redirect("pet_home")
+    return render(request,"pets/book-doctor.html",{"doctor":doctor,"form":form})
+
+
+@pet_only
+def view_my_bookings(request):
+    all_bookings = Booking.objects.filter(Patient_ID=request.user.id)
+    return render(request,"pets/view-all-bookings.html",{"all_bookings":all_bookings})

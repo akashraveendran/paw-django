@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .forms import UserAddForm,DoctorProfieForm
 from .models import DoctorProfile
-from pets.models import Booking,PetProfile
+from pets.models import Booking,PetProfile,Vaccination
 
 from .decorators import doctor_only, not_auth_doctor
 
@@ -96,8 +96,9 @@ def view_doctor_appoinments(request):
 
 @doctor_only
 def view_patient(request,id):
-    patient = PetProfile.objects.get(id=id)
-    return render(request,"doctors/patient-profile.html",{"pet":patient})
+    pet = PetProfile.objects.get(id=id)
+    all_vaccines = Vaccination.objects.filter(user_ID=pet.user_ID)
+    return render(request,"doctors/patient-profile.html",{"pet":pet,"all_vaccines":all_vaccines})
 
 @doctor_only
 def cancel_booking(request,id):

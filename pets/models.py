@@ -35,4 +35,4 @@ class Vaccination(models.Model):
     Pet_name = models.CharField(max_length=200,null=True,blank=True)
     Vaccination_Name = models.CharField(max_length=200,null=True,blank=True)
     Vaccinated_Date = models.CharField(max_length=200,null=True,blank=True)
-    Vaccination_Document = models.ImageField(upload_to="vaccines",max_length=200,null=True,blank=True)
+    Vaccination_Document = models.FileField(upload_to="vaccines",max_length=200,null=True,blank=True)

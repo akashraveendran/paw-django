@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import UserAddForm,AddPetForm,AddBookingForm,AddVaccineForm
-from .models import PetProfile,Booking
+from .models import PetProfile,Booking,Vaccination
 from doctors.models import DoctorProfile
 
 from .decorators import pet_only, not_auth_pet
@@ -137,5 +137,11 @@ def add_vaccine(request):
             vaccine_form.user_ID = request.user
             vaccine_form.Pet_name = pet.Pet_name
             vaccine_form.save()
-            return redirect("pet_home")
+            return redirect("view_my_vaccines")
     return render(request, "pets/add-vaccine.html",{"form":form})
+
+
+@pet_only
+def view_my_vaccines(request):
+    all_vaccines = Vaccination.objects.filter(user_ID=request.user.id)
+    return render(request,"pets/view-all-vaccines.html",{"all_vaccines":all_vaccines})

@@ -8,19 +8,19 @@
         <h5 class="title-subhny mb-2"> </h5>
         <h3 class="title-w3l text-center"><span> Pet Profile </span></h3>
         <div class="grids-area-hny main-cont-wthree-fea row  mt-5">
-            <div class="col-12 col-md-11 grids-feature mb-3 d-flex justify-content-center" style="height: 70vh;">
+            <div class="col-12 col-md-11 grids-feature mb-3 d-flex justify-content-center" style="min-height: 70vh;">
                 <div class="area-box bg-light"
                     style="width: 80%;height: 100%;display: flex;justify-content: space-between;">
                     <img class="p-3" src="{{pet.Pet_photo.url}}" alt=""
-                        style="width:50%;height: 100%;border-radius: 10px;object-fit: cover;">
+                        style="width:50%;border-radius: 10px;object-fit: cover;">
                     <div class="right2">
 
                         <h4><a href="#feature" class="title-head text-light text-uppercase">{{doctor.Doctor_name}}</a>
                         </h4>
                         <p>
-                            {{pet.Pet_name}}
+                            Name : <span class="fw-bold">{{pet.Pet_name}}</span>
                             <br>
-                            Is a {{pet.Pet_category}}
+                            Pet Type {{pet.Pet_category}}
                             <br>
                             Breed : {{pet.Pet_Breed}}
                             <br>
@@ -29,12 +29,27 @@
                             <br>
                         </p>
                         <br>
-                        <h4>Vaccines</h4>
 
                     </div>
                 </div>
             </div>
 
+        </div>
+        <div class="m-5 p-5 ">
+            <h1 class="text-center text-capitalize">{{pet.Pet_name}}'s Vaccinations</h1>
+            {% for v in all_vaccines %}
+            <div class="card mt-3 p-5 w-100" style="width: 100%;">
+                <p>
+                    Vaccination : <span class="fw-bold">{{v.Vaccination_Name}}</span>
+                    <br>
+                    Vaccination date : <span class="fw-bold">{{v.Vaccinated_Date}}</span>
+                    <br>
+                    <a class="btn btn-danger mt-4" href="{{v.Vaccination_Document.url}}" target="_blank">
+                        View
+                        vaccination Document </a>
+                </p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

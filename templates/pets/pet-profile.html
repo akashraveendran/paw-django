@@ -2,13 +2,38 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5 p-5">
-    <h1 class="mt-5 pt-5">pet profile</h1>
-    <h3>{{pet.Pet_name}}</h3>
-    <h3>{{pet.Pet_category}}</h3>
-    <h3>{{pet.Pet_Breed}}</h3>
-    <h3>{{pet.Age}}</h3>
-    <img src="{{pet.Pet_photo.url}}" alt="">
-</div>
+
+<section class="w3l-bottom-grids-6 mt-5" id="services">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <h5 class="title-subhny mb-2"> </h5>
+        <h3 class="title-w3l text-center"><span>Your Pet's Details </span></h3>
+        <div class="grids-area-hny main-cont-wthree-fea row  mt-5">
+            <div class="col-12 col-md-11 grids-feature mb-3 d-flex justify-content-center" style="min-height: 70vh;">
+                <div class="area-box bg-light"
+                    style="width: 80%;height: 100%;display: flex;justify-content: space-between;">
+                    <img class="p-3" src="{{pet.Pet_photo.url}}" alt=""
+                        style="width:50%;border-radius: 10px;object-fit: cover;">
+                    <div class="right2">
+
+                        <h4><a href="#" class="title-head text-danger text-uppercase"> <span
+                                    class="fw-bold">{{pet.Pet_name}}</span></a>
+                        </h4>
+                        <h3 class="title-w3s">
+                            <br>
+                            Belong to {{pet.Pet_category}} category.
+                            <br>
+                            {{pet.Pet_name}} is {{pet.Pet_Breed}}.
+                            <br>
+                            <br>
+                            {{pet.Pet_name}} is {{pet.Age}} year(s) old
+                            <br>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 {% endblock%}
